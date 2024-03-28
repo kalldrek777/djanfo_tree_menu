@@ -1,0 +1,21 @@
+{% if show_menu is not False %}
+<ul>
+    <li>
+
+        <a href="?{{ menu.id }}={{ menu }}">{{ menu }}</a>
+
+    </li>
+{% endif %}
+<ul>
+    {% for item in items %}
+      <li>
+        <a href="?{{ menu }}={{ item.id }}">{{ item.name }}</a>
+      </li>
+      {% if item.child_items %}
+        {% include 'menu/draw_menu.html' with items=item.child_items show_menu=False %}
+      {% endif %}
+    {% endfor %}
+</ul>
+{% if show_menu is not False %}
+</ul>
+{% endif %}
